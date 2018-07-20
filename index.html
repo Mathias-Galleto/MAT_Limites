@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <script src="Resources/angular_framework.js"></script>
+    <script src="app.js"></script>
+    <script src="controllers/homeController.js"></script>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link href="style.css" rel="stylesheet" type="text/css">
+    <title>Calculadora limites</title>
+  </head>
+  <body ng-app="app">
+    <div class="contenedor" ng-controller="home">
+      <div ng-if="view=='pageOne'">
+        <h1>calculadora de limites</h1>
+        <h3>elija el tipo de función que desea realizar</h3>
+        <div class="w3-container w3-card-4 w3-light-grey panel" style="max-width: 750px;margin-top: 90px;">
+          <div class="w3-row w3-section" ng-repeat="item in items">
+            <div class="w3-rest">
+              <button ng-click="algo(item.url)">{{ item.text }}</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div ng-if="view=='pageTwo'">
+        <div>
+          <h3>Lim</h3>
+          <input type="text" id="a">x+
+          <input type="text" id="b">
+          <br>
+          <h3>x→</h3>
+          <input type="text" id="x" placeholder="a">
+          <button id="button">Dale al botón</button>
+        </div>
+    
+        <p id="mensaje"></p>
+        <a href="index.html">volver al pricipio</a>
+      </div>
+
+      <div ng-if="view=='pageThree'">
+        <div>
+          <h3>F(x)=</h3>
+          <input type="text" id="a">x+
+          <input type="text" id="b">
+          <br>
+          <hr>
+          x+<input type="text" id="c">
+          <h3>x→</h3>
+          <input type="text" id="x" placeholder="a">
+        </div>
+        <button id="button">Dale al botón</button>
+        <p id="mensaje"></p>
+        <a href="index.html">volver al pricipio</a>
+      </div>
+
+      <div ng-if="view=='pageFour'">
+        <div>
+          <h3>Lim</h3>
+          √(<input type="text" id="a">x+
+          <input type="text" id="b">)
+          <h3>x→</h3>
+          <input type="text" id="x" placeholder="a">
+          <button id="button">Dale al botón</button>
+        </div>
+        <p id="mensaje"></p>
+        <a href="index.html">volver al pricipio</a>
+      </div>
+
+      <div ng-if="view=='pageFive'">
+        <div ng-bind-html="algoMas">
+        </div>
+        <p id="mensaje"></p>
+        <a href="index.html">volver al pricipio</a>
+      </div>
+    </div>
+  </body>
+</html>

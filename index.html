@@ -6,6 +6,11 @@
     <script src="Resources/angular_framework.js"></script>
     <script src="app.js"></script>
     <script src="controllers/homeController.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    
     <title>Calculadora limites</title>
   </head>
   <body ng-app="app">
@@ -24,74 +29,77 @@
         font-size: 1.2em;
       }
     </style>
-    <div ng-controller="home">
-      <div ng-if="view=='pageOne'">
-        <h1>Calculadora de limites</h1>
-        <h3>Elija el tipo de función que desea realizar</h3>
-        <div style="max-width: 750px;margin-top: 90px;">
-          <div ng-repeat="item in items">
-            <div>
-              <button ng-click="algo(item.url)">{{ item.text }}</a>
+    <div class="container">
+        <div ng-controller="home">
+            <div ng-if="view=='pageOne'">
+              <h1>Calculadora de limites</h1>
+              <h3>Elija el tipo de función que desea realizar</h3>
+              <div style="max-width: 750px;margin-top: 90px;">
+                <div ng-repeat="item in items">
+                  <div>
+                    <button ng-click="algo(item.url)" class="btn btn-primary btn-lg" style="margin-bottom: 5px;">{{ item.text }}</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+      
+            <div ng-if="view=='pageTwo'">
+              <div>
+                <h3>Lim</h3>
+                <input type="text" ng-model="aValue">x+
+                <input type="text" ng-model="bValue">
+                <br>
+                <h3>x→</h3>
+                <input type="text" placeholder="a" ng-model="xValue"> <br/>
+                <button ng-click="operate({aValue}, {bValue}, {xValue})" class="btn btn-primary btn-lg" style="margin-top: 15px">Realizar calculo</button>
+              </div>
+          
+              <p id="mensaje"></p>
+              <a href="index.html" class="btn btn-primary">Volver al pricipio</a>
+            </div>
+      
+            <div ng-if="view=='pageThree'">
+              <div>
+                <h3>F(x)=</h3>
+                <div style="display: inline-block; margin: 0; border-bottom: 2px solid black; padding-bottom: 3px;">
+                    <input type="text" ng-model="aValue"> x+
+                    <input type="text" ng-model="bValue">
+                </div>
+                <br>
+                <h6 style="display: inline-block; margin-left: 90px;">x+</h6><input type="text" ng-model="cValue"> <br/>
+                <h3>x→</h3>
+                <input type="text" placeholder="a" ng-model="xValue"> <br/>
+              </div>
+              <button ng-click="operate({aValue}, {bValue}, {xValue}, {cValue})" class="btn btn-primary btn-lg" style="margin-top: 15px">Realizar calculo</button>
+              <p id="mensaje"></p>
+              <a href="index.html" class="btn btn-primary">Volver al pricipio</a>
+            </div>
+      
+            <div ng-if="view=='pageFour'">
+              <div>
+                <h3>Lim</h3>
+                √(<input type="text" ng-model="aValue"> x+
+                <input type="text" ng-model="bValue">) <br/>
+                <h3>x→</h3>
+                <input type="text" ng-model="xValue" placeholder="a"> <br/>
+                <button ng-click="operate({aValue}, {bValue}, {xValue})" class="btn btn-primary btn-lg" style="margin-top: 15px">Realizar calculo</button>
+              </div>
+              <p id="mensaje"></p>
+              <a href="index.html" class="btn btn-primary">Volver al pricipio</a>
+            </div>
+      
+            <div ng-if="view=='pageFive'">
+              <div>
+                  <h3>Lim</h3>√(<input type='text' ng-model="aValue"> x²+
+                  <input type='text' ng-model="bValue">) <br/>
+                  <h3>x→</h3>
+                  <input type='text' ng-model="xValue" placeholder='a'> <br/>
+                  <button ng-click="operate({aValue}, {bValue}, {xValue})" class="btn btn-primary btn-lg" style="margin-top: 15px">Realizar calculo</button>
+              </div>
+              <p id="mensaje"></p>
+              <a href="index.html" class="btn btn-primary">Volver al pricipio</a>
             </div>
           </div>
-        </div>
-      </div>
-
-      <div ng-if="view=='pageTwo'">
-        <div>
-          <h3>Lim</h3>
-          <input type="text" ng-model="aValue">x+
-          <input type="text" ng-model="bValue">
-          <br>
-          <h3>x→</h3>
-          <input type="text" placeholder="a" ng-model="xValue"> <br/>
-          <button ng-click="operate({aValue}, {bValue}, {xValue})">Realizar calculo</button>
-        </div>
-    
-        <p id="mensaje"></p>
-        <a href="index.html">Volver al pricipio</a>
-      </div>
-
-      <div ng-if="view=='pageThree'">
-        <div>
-          <h3>F(x)=</h3>
-          <input type="text" ng-model="aValue">x+
-          <input type="text" ng-model="bValue">
-          <br>
-          <hr>
-          x+<input type="text" ng-model="cValue">
-          <h3>x→</h3>
-          <input type="text" placeholder="a" ng-model="xValue"> <br/>
-        </div>
-        <button ng-click="operate({aValue}, {bValue}, {xValue}, {cValue})">Realizar calculo</button>
-        <p id="mensaje"></p>
-        <a href="index.html">Volver al pricipio</a>
-      </div>
-
-      <div ng-if="view=='pageFour'">
-        <div>
-          <h3>Lim</h3>
-          √(<input type="text" ng-model="aValue">x+
-          <input type="text" ng-model="bValue">)
-          <h3>x→</h3>
-          <input type="text" ng-model="xValue" placeholder="a"> <br/>
-          <button ng-click="operate({aValue}, {bValue}, {xValue})">Realizar calculo</button>
-        </div>
-        <p id="mensaje"></p>
-        <a href="index.html">Volver al pricipio</a>
-      </div>
-
-      <div ng-if="view=='pageFive'">
-        <div>
-            <h3>Lim</h3>√(<input type='text' ng-model="aValue">x²+
-            <input type='text' ng-model="bValue">)
-            <h3>x→</h3>
-            <input type='text' ng-model="xValue" placeholder='a'> <br/>
-            <button ng-click="operate({aValue}, {bValue}, {xValue})">Realizar calculo</button>
-        </div>
-        <p id="mensaje"></p>
-        <a href="index.html">Volver al pricipio</a>
-      </div>
     </div>
   </body>
 </html>

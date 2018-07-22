@@ -47,12 +47,16 @@ app.controller('home', function($scope) {
 
     function validar(a, b, c, x){
     
-        a = a.trim();
-        b = b.trim();
-        c = c.trim();
-        x = x.trim();
-    
-        return (isNumber(a)&&isNumber(x)&&isNumber(b)&&isNumber(c));
+        if (a && b && x) {
+            a = a.trim();
+            b = b.trim();
+            c = c.trim();
+            x = x.trim();
+        
+            return (isNumber(a)&&isNumber(x)&&isNumber(b)&&isNumber(c));   
+        } else {
+            return false;
+        }
     }
     
     function ordenar(a, b, c, x, page){
